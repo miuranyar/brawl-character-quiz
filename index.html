@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ブロスタ全キャラ言えるかな？</title>
   <style>
    body {
@@ -336,6 +337,33 @@
 
 #giveUpTitle {
   color: #d60000;
+}
+
+
+/* ===== スマホ用 ===== */
+@media (max-width: 768px) {
+
+  .character-grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+    width: 100%;
+    padding: 0 5px;
+    box-sizing: border-box;
+    margin: 10px auto;
+  }
+
+  .character {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+
+  .character img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
 }
 
 </style>
