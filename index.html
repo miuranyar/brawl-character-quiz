@@ -447,44 +447,41 @@
     object-fit: cover;
   }
 
-  /* 正解した枠 */
-  .character.answered {
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* 正解後の画像部分 */
-  .character.answered img {
-    width: 100%;
-    height: calc(100% - 9px);
-    object-fit: cover;
-    flex-shrink: 0;
-  }
 
   /* 名前は未回答時は非表示 */
   .character-name {
     display: none;
   }
 
-  /* 正解時だけ下に名前 */
-  .character.answered .character-name {
-    display: block;
+ /* 正解したキャラ：スマホ版 */
+.character.answered {
+    display: grid !important;
+    grid-template-rows: 1fr 9px !important;
+    overflow: hidden;
+}
 
+/* 正解画像 */
+.character.answered img {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0;
+    object-fit: cover;
+}
+
+/* 正解したキャラの名前 */
+.character.answered .character-name {
+    display: block !important;
     width: 100%;
-    height: 9px;
-    line-height: 9px;
-
-    font-size: 6px;
+    height: 9px !important;
+    line-height: 9px !important;
+    font-size: 6px !important;
     font-weight: bold;
     text-align: center;
-
     color: white;
     background: rgba(0, 0, 0, 0.85);
-
-    white-space: nowrap;
     overflow: hidden;
-    box-sizing: border-box;
-  }
+    white-space: nowrap;
+}
 
   /* 番号を左上 */
   .number {
