@@ -325,6 +325,43 @@
   color: #d60000;
 }
 
+/* PC版：正解後の名前欄を強制 */
+.character.answered {
+  position: relative !important;
+  width: 70px !important;
+  height: 70px !important;
+  overflow: hidden !important;
+}
+
+.character.answered img {
+  width: 100% !important;
+  height: 61px !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+.character.answered .character-name {
+  display: block !important;
+  position: absolute !important;
+  left: 0 !important;
+  bottom: 0 !important;
+
+  width: 100% !important;
+  height: 9px !important;
+  line-height: 9px !important;
+
+  background: #000 !important;
+  color: #fff !important;
+
+  font-size: 6px !important;
+  font-weight: bold !important;
+  text-align: center !important;
+
+  z-index: 50 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 /* =========================
    スマホ版
 ========================= */
@@ -429,43 +466,6 @@
     overflow: hidden;
 }
 
-
-/* PC版：正解後の名前欄を強制 */
-.character.answered {
-  position: relative !important;
-  width: 70px !important;
-  height: 70px !important;
-  overflow: hidden !important;
-}
-
-.character.answered img {
-  width: 100% !important;
-  height: 61px !important;
-  object-fit: cover !important;
-  display: block !important;
-}
-
-.character.answered .character-name {
-  display: block !important;
-  position: absolute !important;
-  left: 0 !important;
-  bottom: 0 !important;
-
-  width: 100% !important;
-  height: 9px !important;
-  line-height: 9px !important;
-
-  background: #000 !important;
-  color: #fff !important;
-
-  font-size: 6px !important;
-  font-weight: bold !important;
-  text-align: center !important;
-
-  z-index: 50 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
 
   .number {
     position: absolute;
