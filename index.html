@@ -121,6 +121,8 @@
   border-radius: 16px;
 
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+
+  position: relative;
 }
 
 .game-info {
@@ -131,33 +133,76 @@
 }
 
 #clearMessage {
-
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
   z-index: 9999;
 
+  width: 420px;
+  max-width: calc(100vw - 40px);
+
   background: white;
-  border: 5px solid black;
+  border: 4px solid black;
   border-radius: 20px;
 
-  padding: 35px 60px;
+  padding: 28px 32px;
 
-  font-size: 42px;
-  font-weight: bold;
+  box-sizing: border-box;
+
   text-align: center;
 
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
-#clearTime {
-  font-size: 55px;
-}
-
 #clearCount {
   font-size: 32px;
-  margin-bottom: 10px;
+  font-weight: bold;
+  text-align: center;
+  margin: 0 0 8px;
+}
+
+#clearTime {
+  color: #20c943;
+  font-size: 32px;
+  font-weight: bold;
+  display: inline-block;
+   position: relative;
+  top: -3px;
+}
+
+#clearMessage > div:nth-of-type(2) {
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.clearComment {
+  font-size: 18px;
+  font-weight: normal;
+  text-align: center;
+  margin: 8px 0 20px;
+}
+
+/* クリアタイムを少し下へ */
+.clearTimeRow {
+  margin-top: 18px;
+}
+
+/* コメントを大きく */
+.clearComment {
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 24px;
+}
+
+#clearMessage .clearButtons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 12px;
 }
 
 .clearButtons button {
@@ -320,6 +365,119 @@
   color: #d60000;
 }
 
+.giveUpComment {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin: 12px 0 18px;
+}
+
+/* =========================
+   効果音 ON / OFF
+========================= */
+
+.sound-setting {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  z-index: 9999;
+
+  display: flex;
+  flex-direction: column;   /* ← 縦並び */
+  align-items: center;
+  gap: 2px;
+}
+
+.sound-title {
+  font-size: 16px;
+  font-weight: 900;
+  color: #d9ff00;
+  margin: 0;
+  line-height: 1;
+  white-space: nowrap;
+  text-shadow: none;
+}
+
+.sound-toggle {
+  display: flex;            /* ON/OFFだけ横並び */
+}
+
+.sound-toggle {
+  display: flex;
+}
+
+.sound-btn {
+  width: 38px;
+  height: 24px;
+
+  padding: 0;
+
+  border: 1px solid #222;
+  background: #555;
+  color: white;
+
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 24px;
+
+  cursor: pointer;
+}
+
+#soundOnBtn {
+  border-radius: 6px 0 0 6px;
+}
+
+#soundOffBtn {
+  border-radius: 0 6px 6px 0;
+}
+
+#soundOnBtn.active {
+  background: #00c91a;
+}
+
+#soundOffBtn.active {
+  background: #d91f1f;
+}
+
+/* スマホ */
+@media (max-width: 600px) {
+  .sound-setting {
+    position: fixed;
+    right: 10px;
+    bottom: 15px;
+
+    top: auto;
+    left: auto;
+
+    z-index: 9999;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .sound-title {
+    font-size: 8px;
+    font-weight: 900;
+    line-height: 8px;
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .sound-toggle {
+    display: flex;
+  }
+
+  .sound-btn {
+    width: 23px;
+    height: 16px;
+    padding: 0;
+    font-size: 8px;
+    font-weight: 900;
+    line-height: 14px;
+  }
+}
 /* =========================
    スマホ版
 ========================= */
@@ -388,21 +546,28 @@
     font-size: 9px;
   }
 
+  @media (max-width: 600px) {
+
+ @media (max-width: 600px) {
+
   .character-grid {
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    gap: 2px;
+    grid-template-columns: repeat(10, minmax(0, 1fr));
+    gap: 4px;
 
-    width: 100%;
-    padding: 0 4px;
-    margin: 6px auto;
+    width: auto;
+    margin: 8px 8px 0 8px;  /* ← 左右8px */
+    padding: 0;
+
     box-sizing: border-box;
   }
 
   .character {
-    position: relative;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
 }
-
 
 
   .character img {
@@ -548,7 +713,6 @@
   }
 }
 
-/* ===== スマホ最終修正版 ===== */
 @media screen and (max-width: 600px) {
 
   /* 10列を強制 */
@@ -733,19 +897,21 @@
 
   <div id="clearCount">106 / 106</div>
 
-  <div>
+  <div class="clearTimeRow">
     クリアタイム：<span id="clearTime">00:00</span>
   </div>
 
-  <div class="clearComment">
-    キャラ知識はプロランク
-  </div>
+<div class="clearComment" id="clearComment">
+  キャラ知識だけはプロランク
+</div>
 
   <div class="clearButtons">
     <button onclick="closeClear()">閉じる</button>
     <button class="shareXButton" onclick="shareToX()">Xで共有</button>
     <button onclick="restartGame()">もう一度</button>
   </div>
+
+</div>
 
 </div>
 </div>
@@ -762,12 +928,32 @@
     タイム：<span id="giveUpTime">00:00</span>
   </div>
 
+  <div id="giveUpComment" class="giveUpComment">
+  次はもっといける！
+</div>
+
   <div class="clearButtons">
     <button onclick="closeGiveUp()">閉じる</button>
    <button class="shareXButton" onclick="shareToX()">Xで共有</button>
     <button onclick="restartGame()">もう一度</button>
   </div>
 </div>
+
+<div class="sound-setting">
+  <div class="sound-title">効果音</div>
+
+  <div class="sound-toggle">
+    <button type="button" id="soundOnBtn" class="sound-btn active">
+      オン
+    </button>
+
+    <button type="button" id="soundOffBtn" class="sound-btn">
+      オフ
+    </button>
+  </div>
+</div>
+</div>
+
 
 </div>
 
@@ -1001,8 +1187,9 @@ if (characterEntry && !answered.includes(characterEntry[0])) {
   document.getElementById("remaining").textContent = 106 - answered.length;
 
   // 正解音
+ if (soundEnabled) {
   new Audio("sounds/ピック音.mp3").play();
-
+ }
   // 正解したキャラ情報
   const character = characterEntry[1];
 
@@ -1044,19 +1231,36 @@ if (answered.length === 106) {
 
   document.getElementById("clearCount").textContent = "106 / 106 ";
 
+const clearComments = [
+  "キャラ知識だけはプロランク",
+  "暇かよ働け",
+  "シンプルに尊敬！すごい！",
+  "おまえブロスタ運営名乗っていいよ",
+  "↑この時間あったら何できたよ？"
+];
+
+const randomComment =
+  clearComments[Math.floor(Math.random() * clearComments.length)];
+
+document.getElementById("clearComment").textContent = randomComment;
+
   document.getElementById("clearMessage").style.display = "block";
 }
 
 } else if (characterEntry && answered.includes(characterEntry[0])) {
 
   // すでに答えたキャラ
+  if (soundEnabled) {
   new Audio("sounds/ミス.mp3").play();
+}
   input.value = "";
 
 } else {
 
   // 存在しないキャラ名
+ if (soundEnabled) {
   new Audio("sounds/失敗.mp3").play();
+}
   input.value = "";
 }
 
@@ -1102,6 +1306,21 @@ Object.entries(characters).forEach(([name, character]) => {
   const targetBox = document.querySelector(
     `.character[data-number="${character.number}"]`
   );
+
+  const giveUpComments = [
+  "次はもっといける！",
+  "諦めてばかりの人生やな",
+  "浅いな",
+  "え！もう終わっちゃうの！勿体ね！",
+  "ここで諦めちゃうか～ｗ",
+  "ほら早く右下のボタン押せよ？ｗ"
+];
+
+const randomGiveUpComment =
+  giveUpComments[Math.floor(Math.random() * giveUpComments.length)];
+
+document.getElementById("giveUpComment").textContent =
+  randomGiveUpComment;
 
   if (targetBox) {
     const targetSlot = targetBox.querySelector("img");
@@ -1162,6 +1381,27 @@ ${count} / 106体 正解！
   window.open(url, "_blank");
 }
 
+let soundEnabled = true;
+
+const soundOnBtn = document.getElementById("soundOnBtn");
+const soundOffBtn = document.getElementById("soundOffBtn");
+
+function updateSoundButtons() {
+  soundOnBtn.classList.toggle("active", soundEnabled);
+  soundOffBtn.classList.toggle("active", !soundEnabled);
+}
+
+soundOnBtn.addEventListener("click", function () {
+  soundEnabled = true;
+  updateSoundButtons();
+});
+
+soundOffBtn.addEventListener("click", function () {
+  soundEnabled = false;
+  updateSoundButtons();
+});
+
+updateSoundButtons();
 
   </script>
 
