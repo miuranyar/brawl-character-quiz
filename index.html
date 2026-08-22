@@ -51,27 +51,48 @@
 .character-grid {
   display: grid;
   grid-template-columns: repeat(15, 65px);
-  gap: 6px;
+  gap: 8px;
   justify-content: center;
   margin: 20px auto;
 }
 
 .character {
-  width: 70px;
-  height: 70px;
-  overflow: hidden;
-  box-sizing: border-box;
-  background-clip: padding-box;
+    width: 70px;
+    height: 80px;
+    overflow: hidden;
+    box-sizing: border-box;
+    background-clip: padding-box;
+    position: relative;
 }
 
-  .character img {
+.character img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
+    display: block;
+}
 
-  .character {
-  position: relative;
+.character.answered {
+    display: flex;
+    flex-direction: column;
+}
+
+.character.answered img {
+    width: 100%;
+    height: 60px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.character.answered .character-name {
+    display: block;
+    height: 15px;
+    line-height: 15px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-size: 9px;
+    font-weight: bold;
 }
 
 .number {
@@ -246,32 +267,6 @@
   border: 3px solid #ff69d4;
 }
 
-.character {
-  width: 65px;
-  height: 80px;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-.character img {
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-  display: block;
-}
-
-.character.answered {
-    display: flex;
-    flex-direction: column;
-}
-
-.character.answered img {
-    width: 100%;
-    height: 55px;
-    object-fit: cover;
-    flex-shrink: 0;
-}
-
 
 .shareXButton {
   background: #000 !important;
@@ -323,43 +318,6 @@
 
 #giveUpTitle {
   color: #d60000;
-}
-
-/* PC版：正解後の名前欄を強制 */
-.character.answered {
-  position: relative !important;
-  width: 70px !important;
-  height: 70px !important;
-  overflow: hidden !important;
-}
-
-.character.answered img {
-  width: 100% !important;
-  height: 61px !important;
-  object-fit: cover !important;
-  display: block !important;
-}
-
-.character.answered .character-name {
-  display: block !important;
-  position: absolute !important;
-  left: 0 !important;
-  bottom: 0 !important;
-
-  width: 100% !important;
-  height: 9px !important;
-  line-height: 9px !important;
-
-  background: #000 !important;
-  color: #fff !important;
-
-  font-size: 6px !important;
-  font-weight: bold !important;
-  text-align: center !important;
-
-  z-index: 50 !important;
-  margin: 0 !important;
-  padding: 0 !important;
 }
 
 /* =========================
@@ -587,6 +545,105 @@
     background: rgba(0, 0, 0, 0.85) !important;
 
     z-index: 10 !important;
+  }
+}
+
+/* ===== スマホ最終修正版 ===== */
+@media screen and (max-width: 600px) {
+
+  /* 10列を強制 */
+  body .character-grid#characterGrid {
+    display: grid !important;
+    grid-template-columns: repeat(10, minmax(0, 1fr)) !important;
+    gap: 3px !important;
+
+    width: calc(100% - 8px) !important;
+    max-width: none !important;
+    margin: 5px auto !important;
+    padding: 0 !important;
+  }
+
+  /* 全カードを同じ縦長サイズにする */
+  body .character-grid .character {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 70 / 76 !important;
+
+    position: relative !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* 未回答の？ */
+  body .character:not(.answered) img {
+    width: 100% !important;
+    height: 100% !important;
+
+    display: block !important;
+    object-fit: fill !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* 正解後 */
+  body .character.answered {
+    display: grid !important;
+    grid-template-rows: minmax(0, 1fr) 10px !important;
+  }
+
+  /* 正解画像 */
+  body .character.answered img {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+
+    display: block !important;
+    object-fit: cover !important;
+
+    position: static !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* 名前欄 */
+  body .character.answered .character-name {
+    display: block !important;
+    position: static !important;
+
+    width: 100% !important;
+    height: 10px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    line-height: 10px !important;
+    font-size: 6px !important;
+    font-weight: bold !important;
+    text-align: center !important;
+
+    color: white !important;
+    background: #000 !important;
+
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 001などの番号 */
+  body .character .number {
+    position: absolute !important;
+    top: 2px !important;
+    left: 2px !important;
+
+    font-size: 7px !important;
+    line-height: 1 !important;
+    z-index: 50 !important;
+
+    color: white !important;
   }
 }
 
