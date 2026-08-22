@@ -51,13 +51,13 @@
 .character-grid {
   display: grid;
   grid-template-columns: repeat(15, 65px);
-  gap: 8px;
+  gap: 6px;
   justify-content: center;
   margin: 20px auto;
 }
 
 .character {
-    width: 70px;
+    width: 65px;
     height: 80px;
     overflow: hidden;
     box-sizing: border-box;
@@ -644,6 +644,29 @@
     z-index: 50 !important;
 
     color: white !important;
+  }
+}
+
+@media screen and (max-width: 600px) {
+
+  body .character-grid#characterGrid {
+    width: 100vw !important;
+    max-width: 100vw !important;
+
+    grid-template-columns: repeat(10, calc((100vw - 27px) / 10)) !important;
+
+    gap: 3px !important;
+    padding: 0 !important;
+    margin: 5px 0 !important;
+
+    justify-content: start !important;
+    overflow: hidden !important;
+  }
+
+  body .character-grid .character {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
   }
 }
 
