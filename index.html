@@ -15,8 +15,6 @@
 
  <style>
 
-  /* 既にあるCSSいっぱい */
-
   h1 {
     text-align: center;
     font-family: Impact, "Arial Black", sans-serif;
@@ -248,7 +246,6 @@
   border: 3px solid #ff69d4;
 }
 
-/* 枠を最初から縦長にする */
 .character {
   width: 65px;
   height: 80px;
@@ -256,7 +253,6 @@
   overflow: hidden;
 }
 
-/* ？画像を枠いっぱいに引き伸ばす */
 .character img {
   width: 100%;
   height: 100%;
@@ -264,7 +260,6 @@
   display: block;
 }
 
-/* 正解したら画像部分を少し縮めて下に名前 */
 .character.answered {
     display: flex;
     flex-direction: column;
@@ -351,7 +346,6 @@
     overflow-x: hidden;
   }
 
-  /* タイトル */
   .title {
     font-size: 20px !important;
     margin: 8px 0 10px;
@@ -359,7 +353,6 @@
     white-space: nowrap;
   }
 
-  /* 上の操作バー */
   .game-bar {
     width: calc(100% - 12px);
     margin: 0 auto 8px;
@@ -374,7 +367,6 @@
     border-radius: 10px;
   }
 
-  /* 入力欄 */
   #answer {
     width: 34%;
     min-width: 0;
@@ -382,11 +374,9 @@
     padding: 3px 6px;
     box-sizing: border-box;
 
-    /* iPhoneの入力時ズーム防止 */
     font-size: 16px;
   }
 
-  /* 回答・ギブアップ */
   .game-bar button {
     height: 32px;
     padding: 3px 7px;
@@ -400,7 +390,6 @@
     font-size: 10px;
   }
 
-  /* タイマー・カウント */
   .game-info {
     margin: 0;
     padding: 0 2px;
@@ -414,7 +403,6 @@
     font-size: 9px;
   }
 
-  /* キャラ一覧：スマホは10列 */
   .character-grid {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
@@ -426,7 +414,6 @@
     box-sizing: border-box;
   }
 
-  /* キャラ枠 */
   .character {
     width: 100%;
     height: auto;
@@ -437,30 +424,25 @@
     box-sizing: border-box;
   }
 
-  /* 未回答画像 */
   .character img {
     width: 100%;
     height: 100%;
     display: block;
 
-    /* 変な引き伸ばし防止 */
     object-fit: cover;
   }
 
 
-  /* 名前は未回答時は非表示 */
   .character-name {
     display: none;
   }
 
- /* 正解したキャラ：スマホ版 */
 .character.answered {
     display: grid !important;
     grid-template-rows: 1fr 9px !important;
     overflow: hidden;
 }
 
-/* 正解画像 */
 .character.answered img {
     width: 100% !important;
     height: 100% !important;
@@ -468,7 +450,6 @@
     object-fit: cover;
 }
 
-/* 正解したキャラの名前 */
 .character.answered .character-name {
     display: block !important;
     width: 100%;
@@ -483,7 +464,6 @@
     white-space: nowrap;
 }
 
-  /* 番号を左上 */
   .number {
     position: absolute;
     top: 2px;
@@ -497,7 +477,6 @@
     color: white;
   }
 
-  /* クリア画面もスマホで収まる */
   #clearMessage,
   #giveUpMessage {
     width: calc(100% - 40px);
@@ -529,7 +508,6 @@
     padding: 8px 12px;
   }
 
-  /* 注釈 */
   .disclaimer {
     font-size: 10px;
     padding: 10px 16px;
@@ -1029,7 +1007,6 @@ Object.entries(characters).forEach(([name, character]) => {
 
     nameLabel.textContent = name;
 
-    // 答えられなかったキャラだけ灰色
     if (!answered.includes(name)) {
       targetSlot.style.filter = "grayscale(100%)";
       targetSlot.style.opacity = "0.55";
